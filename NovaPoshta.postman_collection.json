@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "ce16d525-3088-48f7-a82c-f354d3ff9685",
+		"name": "NovaPoshta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27277254"
+	},
+	"item": [
+		{
+			"name": "Create Department",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departmentId\": 1,\r\n    \"departmentLocation\": \"Nyzunna street 5 (Lviv)\",\r\n    \"workingTime\": \"09:00-19:00\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Department",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workingTime\": \"09:00-22:00\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/departments/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Department",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/departments/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Departments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/departments/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Department",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Parcel To Department 1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parcelId\": 1,\r\n    \"weight\": 1.0,\r\n    \"height\": 20.0,\r\n    \"width\": 15.0,\r\n    \"length\": 10.0,\r\n    \"origin\": \"Lviv\",\r\n    \"shippingAddress\": \"Kyiv\",\r\n    \"currentLocation\": \"Lviv\",\r\n    \"sendingDate\": \"2023-06-14\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/parcels",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"parcels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Parcel",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"weight\": 1.0,\r\n    \"height\": 10.0,\r\n    \"width\": 15.0,\r\n    \"length\": 10.0,\r\n    \"origin\": \"Lviv\",\r\n    \"shippingAddress\": \"Kyiv\",\r\n    \"currentLocation\": \"Lviv\",\r\n    \"sendingDate\": \"2023-06-14\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/parcels/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"parcels",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Parcel",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parcels/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parcels",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Parcels",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parcels/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parcels",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Parcel",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/parcels/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"parcels",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Courier to Department",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"Roman Lazyrk\",\r\n    \"working\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/couriers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"couriers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Couriers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/couriers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"couriers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Courier",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/couriers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"couriers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Courier",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\": \"Miwa Mix\",\r\n    \"working\": true\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/couriers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"couriers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Courier",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/couriers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"couriers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Departments Parcels",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/parcels",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"parcels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deliver Parcel to Department",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/2/deliver/1/parcels/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"2",
+						"deliver",
+						"1",
+						"parcels",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Give Parcel to Courier",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/departments/1/couriers/1/parcels/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"departments",
+						"1",
+						"couriers",
+						"1",
+						"parcels",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
