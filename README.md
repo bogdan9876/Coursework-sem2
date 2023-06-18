@@ -1,7 +1,12 @@
-Task
+#NovaPoshtaAPI
+##Task
+###Features
+#####To run this project locally, follow these steps:
+#####Usage
+
 Create an API that allows you to receive and transfer information about departments, parcels that are forwarded between departments and delivered by couriers, information about the parcels themselves
 
-#Features
+Features
 Create, update and delete Department,Parcel,Courier
 Read and CSV files
 #Technologies Used
@@ -9,15 +14,15 @@ Java
 Spring Framework
 Maven
 Installation
-#To run this project locally, follow these steps:
 
+To run this project locally, follow these steps:
 Clone the repository via git bash: git clone https://github.com/bogdan9876/Coursework-sem2.git
 Open project in your IDE
 Build project with command : mvn clean install
 Run the application 
 The application will start running on http://localhost:8080.
 
-#Usage
+Usage
 To make requests in Postman, you can copy the JSON collection, and create a new Postman collection using this code. Here's how to do it:
 Open Postman and click on the "Import" button in the upper left corner.
 In the "Import" window, select the "Raw Text" tab.
