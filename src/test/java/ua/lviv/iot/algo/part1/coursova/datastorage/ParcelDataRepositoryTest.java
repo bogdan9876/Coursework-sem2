@@ -23,7 +23,7 @@ public class ParcelDataRepositoryTest {
     @Test
     public void testGetId() throws ParseException {
         Parcel parcel = new Parcel(10.5f, 20.5f, 30.5f, 40.5f, "Origin", "Shipping Address",
-                "Current", new SimpleDateFormat("yyyy-MM-dd").parse("2023-05-19"), 123);
+                "Current", "2023.05.19", 123);
         Integer id = parcelDataRepository.getId(parcel);
         Assertions.assertEquals(123, id);
     }
@@ -40,7 +40,7 @@ public class ParcelDataRepositoryTest {
         Assertions.assertEquals("Origin", parcel.getOrigin());
         Assertions.assertEquals("Shipping Address", parcel.getShippingAddress());
         Assertions.assertEquals("Current", parcel.getCurrentLocation());
-        Assertions.assertEquals(new SimpleDateFormat("yyyy-MM-dd").parse("2023-05-19"), parcel.getSendingDate());
+        Assertions.assertEquals("2023-05-19", parcel.getSendingDate());
         Assertions.assertNotNull(parcel.getParcelId());
     }
 
@@ -54,7 +54,7 @@ public class ParcelDataRepositoryTest {
     public void testSaveAndLoad() throws Exception {
         HashMap<Integer, Parcel> parcelMap = new HashMap<>();
         Parcel parcel = new Parcel(10.5f, 20.5f, 30.5f, 40.5f, "Origin", "Shipping Address",
-                "Current Location", new SimpleDateFormat("yyyy-MM-dd").parse("2023-05-19"), 1);
+                "Current Location", "2023-05-19", 1);
         parcelMap.put(parcelDataRepository.getId(parcel), parcel);
 
         String directoryPath = "test_directory/";
@@ -64,7 +64,8 @@ public class ParcelDataRepositoryTest {
         HashMap<Integer, Parcel> loadedParcelMap = parcelDataRepository.load(directoryPath);
 
         Assertions.assertEquals(parcelMap.size(), loadedParcelMap.size());
-        Assertions.assertEquals(parcelMap.get(1), loadedParcelMap.get(1));
+        Assertions.assertEquals(parcelMap.get(1).toString(), loadedParcelMap.get(1).toString());
     }
+
 
 }

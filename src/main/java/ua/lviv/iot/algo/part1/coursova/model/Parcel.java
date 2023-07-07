@@ -9,8 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -27,10 +25,9 @@ public class Parcel extends Entity {
     private String origin;
     @NotNull(message = "Parcel's shipping address cannot be null")
     private String shippingAddress;
-    @NotNull(message = "Parcel's current location cannot be null")
     private String currentLocation;
     @NotNull(message = "Parcel's sending date sent cannot be null")
-    private Date sendingDate;
+    private String sendingDate;
 
     private Integer parcelId;
 
@@ -44,9 +41,8 @@ public class Parcel extends Entity {
 
     @Override
     public String toCSV() {
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(sendingDate);
         return parcelId + ", " + weight + ", " + height + ", "
                 + width + ", " + length + ", " + origin + ", "
-                + shippingAddress + ", " + currentLocation + ", " + date;
+                + shippingAddress + ", " + currentLocation + ", " + sendingDate;
     }
 }

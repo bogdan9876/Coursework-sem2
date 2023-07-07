@@ -56,10 +56,16 @@ public class CourierService {
     }
 
 
-    public void updateCourier(final Courier courier,
-                              final Integer courierId) {
-        this.couriers.put(courierId, courier);
+    public void updateCourier(final Integer courierId,
+                              final Courier updatedCourier) {
+        Courier existingCourier = getCourierById(courierId);
+        if (existingCourier != null) {
+            existingCourier.setFullName(updatedCourier.getFullName());
+            existingCourier.setWorking(updatedCourier.isWorking());
+            existingCourier.setParcelIds(updatedCourier.getParcelIds());
+        }
     }
+
 
     public void deleteCourier(final Integer courierId) {
         for (Integer parcelId: this.couriers.get(courierId).getParcelIds()) {

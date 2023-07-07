@@ -1,6 +1,7 @@
 package ua.lviv.iot.algo.part1.coursova.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +33,13 @@ public class CourierController {
     }
 
     @GetMapping("/couriers/{courierId}")
-    public Courier getCourierById(@PathVariable final Integer courierId) {
-        return courierService.getCourierById(courierId);
+    public ResponseEntity<Courier> getCourierById(@PathVariable
+                                                  final Integer courierId) {
+        Courier courier = courierService.getCourierById(courierId);
+        if (courier == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(courier);
     }
 
     @PostMapping("/departments/{departmentId}/couriers")
@@ -44,11 +50,9 @@ public class CourierController {
     }
 
     @PutMapping("/departments/{departmentId}/couriers/{courierId}")
-    public void updateCourier(@PathVariable final Integer departmentId,
-                              @RequestBody @Valid final Courier courier,
-                              @PathVariable final Integer courierId)
-            throws IOException {
-        departmentService.updateCourier(departmentId, courier, courierId);
+    public void updateCourier(@PathVariable final Integer courierId,
+                              @RequestBody @Valid final Courier courier) {
+        courierService.updateCourier(courierId, courier);
     }
 
     @DeleteMapping("/departments/{departmentId}/couriers/{courierId}")

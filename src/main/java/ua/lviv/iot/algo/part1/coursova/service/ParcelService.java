@@ -49,15 +49,22 @@ public class ParcelService {
         return parcel;
     }
 
-    public void updateParcel(final Parcel parcel,
+    public void updateParcel(final Parcel updatedParcel,
                              final Integer parcelId) throws IOException {
-        for (int i = 0; i < parcels.size(); i++) {
-            if (parcels.get(i).getParcelId().equals(parcelId)) {
-                parcel.setParcelId(parcelId);
-                parcels.set(i, parcel);
-                saveParcels();
-                return;
-            }
+        Parcel existingParcel = getParcelById(parcelId);
+
+        if (existingParcel != null) {
+            existingParcel.setWeight(updatedParcel.getWeight());
+            existingParcel.setHeight(updatedParcel.getHeight());
+            existingParcel.setWidth(updatedParcel.getWidth());
+            existingParcel.setLength(updatedParcel.getLength());
+            existingParcel.setOrigin(updatedParcel.getOrigin());
+            existingParcel.setShippingAddress(updatedParcel.
+                    getShippingAddress());
+            existingParcel.setCurrentLocation(updatedParcel.
+                    getCurrentLocation());
+            existingParcel.setSendingDate(updatedParcel.getSendingDate());
+            saveParcels();
         }
     }
 

@@ -1,6 +1,7 @@
 package ua.lviv.iot.algo.part1.coursova.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,14 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping("/{departmentId}")
-    public Department getDepartmentById(@PathVariable
+    public ResponseEntity<Department> getDepartmentById(@PathVariable
                                         final Integer departmentId) {
-        return departmentService.getDepartmentById(departmentId);
+        Department department = departmentService.getDepartmentById(
+                departmentId);
+        if (department == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(department);
     }
 
     @GetMapping
@@ -35,12 +41,11 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public Department createDepartment(
-            @RequestBody
-            @Valid final Department department) throws IOException {
+    public void createDepartment(@RequestBody
+                                 @Valid final Department department)
+                                 throws IOException {
         Department createdDepartment = departmentService.
                 createDepartment(department);
-        return createdDepartment;
     }
 
     @PutMapping("/{departmentId}")
@@ -56,7 +61,7 @@ public class DepartmentController {
     @DeleteMapping("/{departmentId}")
     public void deleteDepartment(@PathVariable
                                  final Integer departmentId)
-            throws IOException {
+                                 throws IOException {
         departmentService.deleteDepartment(departmentId);
     }
 }

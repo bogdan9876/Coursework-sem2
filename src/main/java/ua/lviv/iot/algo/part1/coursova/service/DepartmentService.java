@@ -92,7 +92,7 @@ public class DepartmentService {
             newIdsCourier.add(parcelId);
             Courier courier = courierService.getCourierById(courierId);
             courier.setParcelIds(newIdsCourier);
-            courierService.updateCourier(courier, courierId);
+            courierService.updateCourier(courierId, courier);
             Parcel newParcel = parcelService.getParcelById(parcelId);
             newParcel.setCurrentLocation("Courier is delivering the parcel");
             parcelService.deleteParcel(parcelId);
@@ -116,13 +116,6 @@ public class DepartmentService {
         }
     }
 
-    public void updateParcel(final Integer departmentId, final Parcel parcel,
-                             final Integer parcelId) throws IOException {
-        if (departments.get(departmentId).getParcelIds().
-                contains(parcel.getParcelId())) {
-            parcelService.updateParcel(parcel, parcelId);
-        }
-    }
 
     public void deleteParcel(final Integer departmentId,
                              final Integer parcelId) throws IOException {
@@ -187,16 +180,6 @@ public class DepartmentService {
         if (departments.get(departmentId) != null) {
             courier.setDepartmentId(departmentId);
             courierService.addCourier(courier);
-            courierService.saveCouriers();
-        }
-    }
-
-    public void updateCourier(final Integer departmentId,
-                              final Courier courier, final Integer courierId)
-            throws IOException {
-        if (departments.get(departmentId) != null) {
-            courier.setDepartmentId(departmentId);
-            courierService.updateCourier(courier, courierId);
             courierService.saveCouriers();
         }
     }

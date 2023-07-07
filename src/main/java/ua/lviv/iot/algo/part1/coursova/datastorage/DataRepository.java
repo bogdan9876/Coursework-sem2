@@ -36,29 +36,25 @@ public abstract class DataRepository<T extends Entity> {
                 directoryPath, getPrefix())));
     }
 
-    private HashMap<Integer, T> scan(final File file)
-            throws IOException, ParseException {
+    private HashMap<Integer, T> scan(final File file) throws IOException,
+            ParseException {
         HashMap<Integer, T> resultCouriers = new HashMap<>();
         if (file.exists()) {
             Scanner scanner = new Scanner(file, StandardCharsets.UTF_8);
-            boolean isFirst = true;
+            scanner.nextLine();
             while (scanner.hasNextLine()) {
-                if (isFirst) {
-                    scanner.nextLine();
-                    isFirst = false;
-                } else {
-                    List<String> rawValues = Arrays.stream(
-                            scanner.nextLine().split(", ")).toList();
-                    List<String> values = DataRepositoryAssistant.
-                            processRawValues(rawValues);
-                    T item = fill(values);
-                    resultCouriers.put(getId(item), item);
-                }
+                List<String> rawValues = Arrays.asList(scanner.nextLine().
+                        split(", "));
+                List<String> values = DataRepositoryAssistant.
+                        processRawValues(rawValues);
+                T item = fill(values);
+                resultCouriers.put(getId(item), item);
             }
             scanner.close();
         }
         return resultCouriers;
     }
+
 
     protected abstract Integer getId(T item);
 

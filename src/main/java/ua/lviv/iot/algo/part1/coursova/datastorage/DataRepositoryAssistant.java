@@ -23,9 +23,6 @@ import java.util.List;
 
 public final class DataRepositoryAssistant {
 
-    private DataRepositoryAssistant() {
-        throw new AssertionError("Instantiating utility class.");
-    }
 
     public static String getDateNow() {
         Date date = Calendar.getInstance().getTime();
@@ -97,49 +94,26 @@ public final class DataRepositoryAssistant {
         }
     }
 
-    public static List<String> processRawValues(
-            final List<String> rawValues) {
+    public static List<String> processRawValues(final List<String> rawValues) {
         List<String> values = new LinkedList<>();
-        boolean isList = false;
-        String listValue = "";
+
         for (String value : rawValues) {
             if (value.equals("null")) {
                 values.add("");
-            } else if (value.contains("[") && value.contains("]")) {
-                if (value.equals("[]")) {
+            } else if (value.startsWith("[") && value.endsWith("]")) {
+                String listValue = value.substring(1, value.length() - 1);
+                if (!listValue.isEmpty()) {
+                    values.add(listValue);
+                } else {
                     values.add("");
-                } else {
-                    int i = 1;
-                    while (value.charAt(i) != ']') {
-                        listValue += value.charAt(i);
-                        i++;
-                    }
-                    values.add(listValue);
-                    isList = false;
-                }
-            } else if (value.contains("[")) {
-                isList = true;
-                for (int i = 1; i < value.length(); i++) {
-                    listValue += value.charAt(i);
-                }
-                listValue += ", ";
-            } else if (isList) {
-                if (value.contains("]")) {
-                    int i = 0;
-                    while (value.charAt(i) != ']') {
-                        listValue += value.charAt(i);
-                        i++;
-                    }
-                    values.add(listValue);
-                    isList = false;
-                } else {
-                    listValue += value + ", ";
                 }
             } else {
                 values.add(value);
             }
         }
+
         return values;
     }
+
 
 }

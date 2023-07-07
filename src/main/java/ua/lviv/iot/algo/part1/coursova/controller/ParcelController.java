@@ -1,6 +1,7 @@
 package ua.lviv.iot.algo.part1.coursova.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,13 @@ public class ParcelController {
     }
 
     @GetMapping("/parcels/{parcelId}")
-    public Parcel getParcelById(@PathVariable final Integer parcelId) {
-        return parcelService.getParcelById(parcelId);
+    public ResponseEntity<Parcel> getParcelById(@PathVariable
+                                                final Integer parcelId) {
+        Parcel parcel = parcelService.getParcelById(parcelId);
+        if (parcel == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(parcel);
     }
 
     @GetMapping("/departments/{departmentId}/parcels")
@@ -61,11 +67,10 @@ public class ParcelController {
     }
 
     @PutMapping("/departments/{departmentId}/parcels/{parcelId}")
-    public void updateParcel(@PathVariable final Integer departmentId,
-                             @PathVariable final Integer parcelId,
-                             @RequestBody
-                             @Valid final Parcel parcel) throws IOException {
-        departmentService.updateParcel(departmentId, parcel, parcelId);
+    public void updateParcel(@PathVariable final Integer parcelId,
+                             @RequestBody @Valid final Parcel parcel)
+            throws IOException {
+        parcelService.updateParcel(parcel, parcelId);
     }
 
     @DeleteMapping("/departments/{departmentId}/parcels/{parcelId}")
@@ -80,7 +85,8 @@ public class ParcelController {
     public void giveParcelToCourier(@PathVariable final Integer departmentId,
                                     @PathVariable final Integer courierId,
                                     @PathVariable
-                                    final Integer parcelId) throws IOException {
+                                    final Integer parcelId)
+            throws IOException {
         departmentService.giveParcelToCourier(departmentId,
                 courierId, parcelId);
     }

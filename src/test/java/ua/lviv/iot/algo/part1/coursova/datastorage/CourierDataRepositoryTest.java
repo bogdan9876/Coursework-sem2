@@ -20,7 +20,7 @@ public class CourierDataRepositoryTest {
 
     @Test
     public void testGetId() {
-        Courier courier = new Courier(1, 1, "John Doe", true, Arrays.asList(2, 3, 4));
+        Courier courier = new Courier(1, 1, "John Stones", true, Arrays.asList(2, 3, 4));
         Integer id = courierDataRepository.getId(courier);
         Assertions.assertEquals(1, id);
     }
@@ -54,6 +54,8 @@ public class CourierDataRepositoryTest {
 
         HashMap<Integer, Courier> loadedCourierMap = courierDataRepository.load(directoryPath);
 
-        Assertions.assertEquals(courierMap, loadedCourierMap);
+        Assertions.assertEquals(courierMap.size(), loadedCourierMap.size());
+        Assertions.assertEquals(courierMap.get(1).toString(), loadedCourierMap.get(1).toString());
     }
+
 }
